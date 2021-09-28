@@ -1,6 +1,7 @@
 [submodule "api"]
 	path = api
 	url = https://github.com/nrademacher/xkanban-api.git
+
 [submodule "client"]
 	path = client
 	url = https://github.com/nrademacher/xkanban-client.git
