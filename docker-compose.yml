@@ -1,0 +1,52 @@
+version: '3.5'
+
+services:
+  postgres:
+    container_name: postgres
+    image: postgres
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      PGDATA: /data/postgres
+    volumes:
+       - postgres:/data/postgres
+    ports:
+      - "5432:5432"
+    networks:
+      - postgres
+    restart: unless-stopped
+  
+  server:
+    container_name: graphql_api
+    build:
+      context: ./api
+    volumes:
+      - './api:/api'
+    ports:
+      - "4000:4000"
+    networks:
+      - postgres
+    depends_on:
+      - postgres
+
+  client:
+    container_name: next_app
+    build:
+      context: ./client
+    volumes:
+      - './client:/client'
+    ports:
+      - '3000:3000'
+    depends_on:
+      - server
+    restart: always
+
+networks:
+  postgres:
+    driver: bridge
+
+volumes:
+    postgres:
+    client:
+    server:
+
