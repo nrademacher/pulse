@@ -9,7 +9,7 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       PGDATA: /data/postgres
     volumes:
-       - postgres:/data/postgres
+       - postgres-data:/var/lib/postgresql/data
     ports:
       - "5432:5432"
     networks:
@@ -46,7 +46,7 @@ networks:
     driver: bridge
 
 volumes:
-    postgres:
+    postgres-data:
     client:
     server:
 
