@@ -1,3 +1,3 @@
 # WIP - xKanban
 
-Personal kanban board creation and management.
+Personal kanban board creation, editing, and management.
