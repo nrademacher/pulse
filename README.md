@@ -1,3 +1,3 @@
-# WIP - xKanban
+# WIP - Surge
 
-Personal kanban board creation, editing, and management.
+Tech project team booking, planning, organization, and coordination.
