@@ -16,30 +16,30 @@ services:
       - postgres
     restart: unless-stopped
   
-  # server:
-  #   container_name: graphql_api
-  #   build:
-  #     context: ./api
-  #   volumes:
-  #     - './api:/api'
-  #   ports:
-  #     - "4000:4000"
-  #   networks:
-  #     - postgres
-  #   depends_on:
-  #     - postgres
-
-  client:
-    container_name: next_app
+  server:
+    container_name: graphql_api
     build:
-      context: ./client
+      context: ./api
     volumes:
-      - './client:/client'
+      - './api:/api'
     ports:
-      - '3000:3000'
-    # depends_on:
-    #   - server
-    restart: always
+      - "4000:4000"
+    networks:
+      - postgres
+    depends_on:
+      - postgres
+
+  # client:
+  #   container_name: next_app
+  #   build:
+  #     context: ./client
+  #   volumes:
+  #     - './client:/client'
+  #   ports:
+  #     - '3000:3000'
+  #   depends_on:
+  #     - server
+  #   restart: always
 
 networks:
   postgres:
@@ -48,5 +48,5 @@ networks:
 volumes:
     postgres-data:
     client:
-    # server:
+    server:
 
