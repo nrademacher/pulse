@@ -2,7 +2,7 @@ version: '3.5'
 
 services:
   postgres:
-    container_name: postgres
+    container_name: postgres_db
     image: postgres
     environment:
       POSTGRES_USER: ${POSTGRES_USER:-postgres}
@@ -12,8 +12,6 @@ services:
        - postgres-data:/var/lib/postgresql/data
     ports:
       - '5432:5432'
-    networks:
-      - postgres
     restart: unless-stopped
   
   server:
@@ -24,26 +22,33 @@ services:
       - './api:/api'
     ports:
       - "4000:4000"
-    networks:
-      - postgres
     depends_on:
       - postgres
+    restart: always
+
+  client:
+    container_name: web_app
+    build:
+      context: ./client
+    volumes:
+      - './client:/client'
+    ports:
+      - '3000:8080'
+    depends_on:
+      - server
+    restart: always
 
   # client:
-  #   container_name: next_app
+  #   container_name: nuxt_app
   #   build:
-  #     context: ./client
+  #     context: ./nuxt-client
   #   volumes:
-  #     - './client:/client'
+  #     - './nuxt-client:/nuxt-client'
   #   ports:
-  #     - '3000:3000'
+  #     - '3000:80'
   #   depends_on:
   #     - server
   #   restart: always
-
-networks:
-  postgres:
-    driver: bridge
 
 volumes:
     postgres-data:
