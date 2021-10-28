@@ -14,29 +14,29 @@ services:
       - '5432:5432'
     restart: unless-stopped
   
-  server:
-    container_name: graphql_api
-    build:
-      context: ./api
-    volumes:
-      - './api:/api'
-    ports:
-      - "4000:4000"
-    depends_on:
-      - postgres
-    restart: always
+  # server:
+  #   container_name: graphql_api
+  #   build:
+  #     context: ./api
+  #   volumes:
+  #     - './api:/api'
+  #   ports:
+  #     - "4000:4000"
+  #   depends_on:
+  #     - postgres
+  #   restart: always
 
-  client:
-    container_name: web_app
-    build:
-      context: ./client
-    volumes:
-      - './client:/client'
-    ports:
-      - '3000:8080'
-    depends_on:
-      - server
-    restart: always
+  # client:
+  #   container_name: web_app
+  #   build:
+  #     context: ./client
+  #   volumes:
+  #     - './client:/client'
+  #   ports:
+  #     - '3000:8080'
+  #   depends_on:
+  #     - server
+  #   restart: always
 
   # client:
   #   container_name: nuxt_app
@@ -52,6 +52,6 @@ services:
 
 volumes:
     postgres-data:
-    client:
-    server:
+    # client:
+    # server:
 
