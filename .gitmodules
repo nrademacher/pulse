@@ -4,8 +4,5 @@
 
 [submodule "client"]
 	path = client
-	url = https://github.com/nrademacher/itemize-frontend.git
+	url = https://github.com/nrademacher/itemize-client.git
 
-[submodule "experimental-nuxt-client"]
-	path = experimental-nuxt-client
-	url = https://github.com/nrademacher/pulse-experimental-nuxt-client.git
