@@ -1,6 +1,13 @@
-version: '3.5'
+version: '3.6'
 
 services:
+  redis:
+   container_name: redis
+   image: "redis:alpine"
+   hostname: redis
+   ports:
+    - "6379:6379"
+
   postgres:
     container_name: postgres_db
     image: postgres
@@ -12,6 +19,8 @@ services:
        - postgres-data:/var/lib/postgresql/data
     ports:
       - '5432:5432'
+    depends_on:
+      - redis
     restart: unless-stopped
   
   # server:
@@ -38,19 +47,8 @@ services:
   #     - server
   #   restart: always
 
-  # client:
-  #   container_name: nuxt_app
-  #   build:
-  #     context: ./nuxt-client
-  #   volumes:
-  #     - './nuxt-client:/nuxt-client'
-  #   ports:
-  #     - '3000:80'
-  #   depends_on:
-  #     - server
-  #   restart: always
-
 volumes:
+    redis:
     postgres-data:
     # client:
     # server:
