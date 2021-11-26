@@ -1,6 +1,11 @@
 version: '3.7'
 
 services:
+  redis:
+    image: "redis:alpine"
+    ports:
+      - '6379:6379'
+
   database:
     container_name: postgres_db
     image: postgres
