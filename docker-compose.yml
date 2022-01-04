@@ -2,9 +2,11 @@ version: '3.7'
 
 services:
   redis:
+    container_name: redis
     image: "redis:alpine"
     ports:
       - '6379:6379'
+    restart: unless-stopped
 
   database:
     container_name: postgres_db
