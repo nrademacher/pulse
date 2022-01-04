@@ -6,3 +6,6 @@
 	path = client
 	url = https://github.com/nrademacher/itemize-client.git
 
+[submodule "next-client"]
+	path = next-client
+	url = https://github.com/nrademacher/next-pulse-client
